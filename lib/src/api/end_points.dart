@@ -1,0 +1,1 @@
+const String ALL_CURRENCIES = 'https://api.coincap.io/v2/assets';
