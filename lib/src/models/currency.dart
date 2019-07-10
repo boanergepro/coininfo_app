@@ -5,6 +5,7 @@ class Currency {
   String _name;
   String _changePercent24Hr;
   String _priceUsd;
+  String _volumeUsd24Hr;
 
   // constructor
   Currency.fromJson(Map<dynamic, dynamic> json) {
@@ -14,6 +15,7 @@ class Currency {
     _name = json['name'] ?? '';
     _changePercent24Hr = json['changePercent24Hr'] ?? '';
     _priceUsd = json['priceUsd'] ?? '';
+    _volumeUsd24Hr = json['volumeUsd24Hr'] ?? '';
   }
 
 // getters
@@ -28,4 +30,6 @@ class Currency {
   String get changePercent24Hr => _changePercent24Hr;
 
   String get priceUsd => _priceUsd;
+
+  String get volumeUsd24Hr => _volumeUsd24Hr;
 }

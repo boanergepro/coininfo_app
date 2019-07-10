@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-//import 'package:web_socket_channel/io.dart';
 import 'package:provider/provider.dart';
 import 'package:coininfo/src/providers/currency.dart';
+import 'package:coininfo/src/widgets/item_currency.dart';
 
 class HomeScreen extends StatelessWidget {
   static final routerName = '/home-screen';
@@ -9,21 +9,18 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //final channel = IOWebSocketChannel.connect('wss://ws.coincap.io/prices?assets=ALL');
-    final currencyApp = Provider.of<CurrencyProvider>(context);
+    final currencyState = Provider.of<CurrencyProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
         title: Text('CoinInfo'),
       ),
       body: RefreshIndicator(
-        child: ListView.separated(
+        child: ListView.builder(
+          itemCount: currencyState.currencies.length,
           itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(currencyApp.currencies[index].name),
-            );
+            return itemCurrency(context, index, currencyState);
           },
-          separatorBuilder: (context, int) => Divider(),
-          itemCount: currencyApp.currencies.length,
         ),
         onRefresh: () async {},
       ),
